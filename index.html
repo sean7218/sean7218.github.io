@@ -1,8 +1,30 @@
+---
+# front matter tells Jekyll to process Liquid
+my_number: 5
+---
+
 <html>
   <head>
     <title>Sean's blog</title>
   </head>
   <body>
     <h1>Sean Zhang</h1>
+    <h2>{{ "HELLO World!" | downcase }}</h1>
+    <h3>{{ page.my_number }}</h3>
+    {% if page.show_sidebar %}
+      <div class="sidebar">
+        sidebar content
+      </div>
+    {% endif %}
+    <section>
+      <ul>
+        {% for post in site.posts %}
+        <li>
+          <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+          {{ post.excerpt }}
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
   </body>
 </html>
