@@ -1,5 +1,0 @@
-## Contact
-
-Twitter:
-Github:
-LinkedIn: 
