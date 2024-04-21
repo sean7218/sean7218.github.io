@@ -1,14 +1,27 @@
-<nav>
-  {% for item in site.data.navigation %}
-  <a 
-    href="{{ item.link }}" 
-    {% if page.url==item.link %}
-      class="current nav-link" 
-    {% else %}
-      class="nav-link" 
-    {% endif %}
-  >
-    {{ item.name }}
-  </a>
-  {% endfor %}
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://sean7218.github.io">
+    </a>
+  </div>
+
+  <div id="navMenu" class="navbar-menu">
+    <div class="navbar-start">
+      {% for item in site.data.navigation %}
+      <a href="{{ item.link }}" {% if page.url==item.link %} class="current navbar-item" {% else %} class="navbar-item"
+        {% endif %}>
+        {{ item.name }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-dark" href="https://github.com/sean7218">Github</a>
+          <a class="button is-link" href="https://discordapp.com/users/sean7218">Discord</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </nav>
