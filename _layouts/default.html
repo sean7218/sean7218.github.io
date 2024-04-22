@@ -1,21 +1,14 @@
 <!doctype html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="/assets/js/navbar-burger.js">
-</head>
-
-<body>
-  {% include header.html %}
-  <section class="section">
-    <div class="container">
-      {{ content }}
-    </div>
-  </section>
-  {% include footer.html %}
-</body>
-
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    {% include header.html %}
+    {{ content }}
+    {% include footer.html %}
+    <link ref="javascript" href="/assets/js/navbar-burger.js">
+  </body>
 </html>
