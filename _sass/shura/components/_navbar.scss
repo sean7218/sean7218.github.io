@@ -9,9 +9,24 @@
 .navbar {
   @extend .flex-layout;
   padding: $base-padding $base-padding * 2;
-  box-shadow: $base-box-shadow;
+  font-size: $base-font-size;
+  a {
+    text-decoration: none;
+  }
 
-  .site-title {
+  .navbar-brand {
     font-size: $font-size-lg;
+  }
+
+  .navbar-menu {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px $base-padding 0 $base-padding;
+  }
+
+  .navbar-item {
+    align-items: flex-start;
   }
 }

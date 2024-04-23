@@ -2,12 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
   <body>
     {% include header.html %}
-    {{ content }}
+    <section>
+      {{ content }}
+    </section>
     {% include footer.html %}
     <link ref="javascript" href="/assets/js/navbar-burger.js">
   </body>

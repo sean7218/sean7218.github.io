@@ -1,0 +1,5 @@
+
+footer {
+  @extend .flex-layout;
+  padding: $base-padding $base-padding * 2;
+}
