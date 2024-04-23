@@ -49,7 +49,7 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
     .col-#{$i}-xs {
       box-sizing: border-box;
       flex-grow: 0;
-      // width: math.div($i*0.01, $grid-columns);
+      width: $i * 0.01 / $grid-columns;
     }
   }
 }
@@ -59,7 +59,7 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
     .col-#{$i}-sm {
       box-sizing: border-box;
       flex-grow: 0;
-      // width: math.div($i*0.01, $grid-columns);
+      width: $i * 0.01 / $grid-columns;
     }
   }
 }
@@ -69,7 +69,7 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
     .col-#{$i}-md {
       box-sizing: border-box;
       flex-grow: 0;
-      // width: math.div($i*0.01, $grid-columns);
+      width: $i * 0.01 / $grid-columns;
     }
   }
 }
@@ -79,7 +79,7 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
     .col-#{$i}-lg {
       box-sizing: border-box;
       flex-grow: 0;
-      // width: math.div($i*0.01, $grid-columns);
+      width: $i * 0.01 / $grid-columns;
     }
   }
 }
@@ -89,7 +89,7 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
     .col-#{$i}-xl {
       box-sizing: border-box;
       flex-grow: 0;
-      // width: math.div($i*0.01, $grid-columns);
+      width: $i * 0.01 / $grid-columns;
     }
   }
 }

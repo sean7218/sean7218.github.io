@@ -131,8 +131,8 @@ $utilities: (
     "values": (
       "default": $base-border-radius,
       "none": 0,
-      "xs": math.div($base-border-radius, 4),
-      "sm": math.div($base-border-radius, 2),
+      "xs": $base-border-radius / 4,
+      "sm": $base-border-radius / 2,
       "lg": $base-border-radius * 2,
       "full": 50%,
     ),
