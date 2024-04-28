@@ -5,6 +5,12 @@ author: Sean Zhang
 date:   2024-04-27
 ---
 
+Why do we need erasing type infomation? Let's dive deeper into some examples and use cases.
+
+## What is type erasure?
+
+
+
 {% highlight swift %}
 protocol Shape {
   func draw()

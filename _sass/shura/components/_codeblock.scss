@@ -47,6 +47,14 @@ $highlights: (
   "deletion": "red",
 );
 
+// 
+.highlight {
+  background-color: $crust;
+  padding: $base-padding $base-padding * 1.5;
+  margin: $base-margin;
+  border-radius: $base-border-radius;
+}
+
 // https://github.com/jwarby/jekyll-pygments-themes/blob/master/github.css
 .highlight .kd { color: $mauve; font-weight: normal; } /* Keyword.Declaration */
 .highlight .kt { color: $yellow; font-weight: normal; font-style: italic; } /* Keyword.Type */
@@ -61,12 +69,11 @@ $highlights: (
 .highlight .c1 { color: $overlay-2; font-style: italic } /* Comment.Single */
 .highlight .cm { color: $overlay-2; font-style: italic } /* Comment.Multiline */
 
+// not used
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-
 .highlight .cp { color: #999999; font-weight: bold; font-style: italic } /* Comment.Preproc */
-
 .highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
 .highlight .ge { color: #000000; font-style: italic } /* Generic.Emph */
