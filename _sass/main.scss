@@ -1,4 +1,7 @@
-@import 'shura/index.scss';
+
+
+
+@import 'shura';
 
 html {
   height: 100%;
@@ -8,6 +11,13 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  background-color: $base;
+  color: $text; 
+}
+
+a {
+  color: $blue;
 }
 
 body > header {

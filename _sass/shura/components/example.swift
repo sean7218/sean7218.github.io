@@ -1,11 +1,3 @@
----
-layout: post
-title:  "Type Erasure in Swift"
-author: Sean Zhang
-date:   2024-04-27
----
-
-{% highlight swift %}
 protocol Shape {
   func draw()
 }
@@ -39,5 +31,3 @@ enum Actions {
   case fetch(Data?)
   case loaded(Data?)
 }
-{% endhighlight %}
-

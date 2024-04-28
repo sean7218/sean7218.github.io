@@ -1,10 +1,67 @@
 @use 'sass:math';
 
+// catppuccin
+$rosewater: #f5e0dc !default;
+$flamingo: #f2cdcd !default;
+$pink: #f5c2e7 !default;
+$mauve: #cba6f7 !default;
+$red: #f38ba8 !default;
+$maroon: #eba0ac !default;
+$peach: #fab387 !default;
+$yellow: #f9e2af !default;
+$green: #a6e3a1 !default;
+$teal: #94e2d5 !default;
+$sky: #89dceb !default;
+$sapphire: #74c7ec !default;
+$blue: #89b4fa !default;
+$lavender: #b4befe !default;
+$text: #cdd6f4 !default;
+$subtext-0: #a6adc8 !default;
+$subtext-1: #bac2de !default;
+$overlay-0: #6c7086 !default;
+$overlay-1: #7f849c !default;
+$overlay-2: #9399b2 !default;
+$surface-0: #313244 !default;
+$surface-1: #45475a !default;
+$surface-2: #585b70 !default;
+$base: #1e1e2e !default;
+$mantle: #181825 !default;
+$crust: #11111b !default;
+
+$catppuccin: (
+  "rosewater": $rosewater,
+  "flamingo": $flamingo,
+  "pink": $pink,
+  "mauve": $mauve,
+  "red": $red,
+  "maroon": $maroon,
+  "peach": $peach,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "sky": $sky,
+  "sapphire": $sapphire,
+  "blue": $blue,
+  "lavender": $lavender,
+  "text": $text,
+  "subtext-0": $subtext-0,
+  "subtext-1": $subtext-1,
+  "overlay-0": $overlay-0,
+  "overlay-1": $overlay-1,
+  "overlay-2": $overlay-2,
+  "surface-0": $surface-0,
+  "surface-1": $surface-1,
+  "surface-2": $surface-2,
+  "base": $base,
+  "mantle": $mantle,
+  "crust": $crust,
+);
+
 // theme colors
-$primary: #326dee;
-$secondary: #1ac888;
-$error: #d32752;
-$info: #f6c31c;
+$primary: #326dee !default;
+$secondary: #1ac888 !default;
+$error: $red !default;
+$info: #f6c31c !default;
 
 // color palette
 $colors: (
@@ -12,18 +69,10 @@ $colors: (
   "secondary": $secondary,
   "error": $error,
   "info": $info,
-  "blue": #1919e6,
-  "red": #e61919,
-  "yellow": #e6e619,
-  "green": #19e635,
-  "orange": #ffa600,
-  "purple": #9900ff,
-  "gray": #808080,
-  "black": black,
-  "white": white
 );
 
-@debug map-get($colors, "purple");
+@debug map-get($colors, "primary");
+@debug map-get($colors, "base");
 
 // spacing
 $base-padding: 0.75rem;
