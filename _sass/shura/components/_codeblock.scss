@@ -53,6 +53,8 @@ $highlights: (
   padding: $base-padding $base-padding * 1.5;
   margin: $base-margin;
   border-radius: $base-border-radius;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 // https://github.com/jwarby/jekyll-pygments-themes/blob/master/github.css
