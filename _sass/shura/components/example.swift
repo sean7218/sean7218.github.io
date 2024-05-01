@@ -16,6 +16,7 @@ protocol Human {
 class Circle: Shape {
   func draw() {
     print("Drawing Circle")
+    return nil
   }
 
   public static var D: String = ""

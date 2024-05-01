@@ -7,94 +7,47 @@ date:   2024-04-27
 
 Why do we need erasing type infomation? Let's dive deeper into some examples and use cases.
 
-## What is type erasure?
-
-
+## Basic Shape
 
 {% highlight swift %}
-protocol Shape {
-  func draw()
+// Circiles and Squares
+// 1. don't need a base class
+// 2. don't know about each other
+// 3. don't know anything about their operations (affordances)
+struct Square {
+    var side: Double
 }
 
-// Some Comments
-/*
-
-*/
-///
-
-protocol Human {
-  associatedtype Interest
-  func share(with person: Human, interest: Interest) -> Bool
+struct Circle {
+    var radius: Double
 }
 
-class Circle: Shape {
-  func draw() {
-    print("Drawing Circle")
-  }
+// How do I store an array of shapes that can be either Circle or Square?
 
-  public static var D: String = ""
+var shapes: [Shape] = [circle1, sqaure1, circle2]
 
-  var radius: Double {
-    return 31.2
-  }
-}
-
-typealias Closure = (String) -> Bool
-
-enum Actions {
-  case fetch(Data?)
-  case loaded(Data?)
-}
 {% endhighlight %}
 
-> Note that the above example, as well as the other pieces of sample code in this article, is not thread-safe — in order to keep things simple. For more info on thread safety, check out “Avoiding race conditions in Swift”.
-
-
-Maybe we can try some of these?
+Because there is really nothing in common between the two types, we need to create a wrapper type so that we can have something in common.
 
 {% highlight swift %}
-class RequestQueue<Response, Error: Swift.Error> {
-    private typealias TypeErasedRequest = AnyRequest<Response, Error>
-
-    private var queue = [TypeErasedRequest]()
-    private var ongoing: TypeErasedRequest?
-
-    // We modify our 'add' method to include a 'where' clause that
-    // gives us a guarantee that the passed request's associated
-    // types match our queue's generic types.
-    func add<R: Request>(
-        _ request: R,
-        handler: @escaping R.Handler
-    ) where R.Response == Response, R.Error == Error {
-        // To perform our type erasure, we simply create an instance
-        // of 'AnyRequest' and pass it the underlying request's
-        // 'perform' method as a closure, along with the handler.
-        let typeErased = AnyRequest(
-            perform: request.perform,
-            handler: handler
-        )
-
-        // Since we're implementing a queue, we don't want to perform
-        // two requests at once, but rather save the request for
-        // later in case there's already an ongoing one.
-        guard ongoing == nil else {
-            queue.append(typeErased)
-            return
-        }
-
-        perform(typeErased)
-    }
-
-    private func perform(_ request: TypeErasedRequest) {
-        ongoing = request
-
-        request.perform { [weak self] result in
-            request.handler(result)
-            self?.ongoing = nil
-
-            // Perform the next request if the queue isn't empty
-            ...
-        }
-    }
+// A wrapper type that we can erasing wrapped types such as Sqaure or Circle
+protocol ShapeConcept {
+    func doSerialize() {}
+    func doDraw() {}
 }
+
+extension Square: ShapeConcept {
+  // ...
+}
+
+extension Circle: ShapeConcept {
+  // ...
+}
+
+var shapes: [ShapeConcept] = [
+  Circle(radius: 1),
+  Square(side: 2),
+  Circle(radius: 2)
+]
 {% endhighlight %}

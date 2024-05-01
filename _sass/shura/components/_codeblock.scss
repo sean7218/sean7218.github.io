@@ -60,6 +60,7 @@ $highlights: (
 // https://github.com/jwarby/jekyll-pygments-themes/blob/master/github.css
 .highlight .kd { color: $mauve; font-weight: normal; } /* Keyword.Declaration */
 .highlight .kt { color: $yellow; font-weight: normal; font-style: italic; } /* Keyword.Type */
+.highlight .kc { color: $maroon; font-weight: bold } /* Keyword.Constant */
 .highlight .nf { color: $blue; font-weight: normal; font-style: italic; } /* Name.Function */
 .highlight .nv { color: $maroon; } /* Name.Variable */
 .highlight .n { color: $blue; } /* ??? */
@@ -87,7 +88,7 @@ $highlights: (
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #aaaaaa } /* Generic.Subheading */
 .highlight .gt { color: #aa0000 } /* Generic.Traceback */
-.highlight .kc { color: #000000; font-weight: bold } /* Keyword.Constant */
+
 .highlight .kn { color: #000000; font-weight: bold } /* Keyword.Namespace */
 .highlight .kp { color: #000000; font-weight: bold } /* Keyword.Pseudo */
 .highlight .kr { color: #000000; font-weight: bold } /* Keyword.Reserved */
