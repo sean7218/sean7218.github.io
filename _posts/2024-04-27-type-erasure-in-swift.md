@@ -7,47 +7,99 @@ date:   2024-04-27
 
 Why do we need erasing type infomation? Let's dive deeper into some examples and use cases.
 
-## Basic Shape
+## Basic Structs
 
-{% highlight swift %}
-// Circiles and Squares
-// 1. don't need a base class
-// 2. don't know about each other
-// 3. don't know anything about their operations (affordances)
-struct Square {
-    var side: Double
+```swift
+struct Biscuit {
+    enum Shape {
+        case round
+        case square
+    }
+    enum Size {
+        case humongo
+        case miniature
+    }
+    
+    var shape: Shape
+    var size: Size
 }
 
-struct Circle {
-    var radius: Double
+struct Tea {
+    enum Variety {
+        case oolong
+        case puerh
+    }
+    enum Size {
+        case teacup
+        case teapot
+    }
+    
+    var variety: Variety
+    var size: Size
 }
 
-// How do I store an array of shapes that can be either Circle or Square?
+var eats: [Biscuit] = [.init(shape: .round, size: .humongo)]
+var drinks: [Tea] = [.init(variety: .oolong, size: .teacup)]
+```
 
-var shapes: [Shape] = [circle1, sqaure1, circle2]
+Here is a problem, how do we combine eats and drinks into one array since they don't share anything in common?
+Yes the `var size: Size` share the same name between Biscuit and Tea but their underlying type is different.
+We can introduce a protocol `Snackable` with associated type `Size` and use the new swift feature existential any to combine them.
 
-{% endhighlight %}
 
-Because there is really nothing in common between the two types, we need to create a wrapper type so that we can have something in common.
-
-{% highlight swift %}
-// A wrapper type that we can erasing wrapped types such as Sqaure or Circle
-protocol ShapeConcept {
-    func doSerialize() {}
-    func doDraw() {}
+```swift
+protocol Snackable {
+    associatedtype Size
+    func calories(size: Size) -> Int
 }
 
-extension Square: ShapeConcept {
-  // ...
+extension Biscuit: Snackable {
+    func calories(size: Size) -> Int {
+        return size == .humongo ? 100 : 10
+    }
+}
+extension Tea: Snackable {
+    func calories(size: Size) -> Int {
+        return size == .teacup ? 1 : 10
+    }
 }
 
-extension Circle: ShapeConcept {
-  // ...
+let existantialSnacks: [any Snackable] = eats + drinks
+```
+
+With existential type, there is a performance hit because it is using dynamic dispatch during the runtime.
+The next natural step is to use generic and type constraint to Snackable by using a wrapper type.
+
+
+```swift
+struct AnySnackable {
+    var snack: Any
+    init<T: Snackable>(_ snack: T) {
+        self.snack = snack
+    }
 }
 
-var shapes: [ShapeConcept] = [
-  Circle(radius: 1),
-  Square(side: 2),
-  Circle(radius: 2)
+let anySnacks = [
+    AnySnackable(Biscuit(shape: .round, size: .humongo)),
+    AnySnackable(Tea(variety: .oolong, size: .teacup))
 ]
-{% endhighlight %}
+```
+
+With `Snackable` in the example above, it is certainly not ideal because we use the type `Any`.
+If we examine the Biscuit and Tea closer, we can see the associated type `Size` should be erased from the array perspective.
+So let's try to erase the type `Size` only.
+
+```swift
+
+struct SizelessSnackable {
+    var calories: (Any) -> Int
+    init<T: Snackable>(_ snack: T) {
+        self.calories = { size in
+            guard let size = size as? T.Size else {
+                fatalError("Oops")
+            }
+            return snack.calories(size: size)
+        }
+    }
+}
+```

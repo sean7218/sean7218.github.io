@@ -48,13 +48,20 @@ $highlights: (
 );
 
 // 
-.highlight {
+div.highlight {
   background-color: $crust;
-  padding: $base-padding $base-padding * 1.5;
-  margin: $base-margin;
+  padding: $base-padding $base-padding * 2;
+  // margin: $base-margin;
+  margin: 0;
   border-radius: $base-border-radius;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+.language-plaintext {
+  background-color: $crust;
+  padding: calc($base-padding * 0.1) calc($base-padding * 0.5);
+  border-radius: $base-border-radius * 0.25;
 }
 
 // https://github.com/jwarby/jekyll-pygments-themes/blob/master/github.css
