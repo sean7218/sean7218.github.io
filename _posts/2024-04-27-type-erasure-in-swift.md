@@ -7,64 +7,52 @@ date:   2024-04-27
 
 Why do we need erasing type infomation? Let's dive deeper into some examples and use cases.
 
-## Basic Structs
+## Basic types
+
+Let's indroduce some basic types.
 
 ```swift
+enum WeirdSize {
+    case humongo
+    case miniature
+}
+
+enum NormalSize {
+    case teacup
+    case teapot
+}
+
 struct Biscuit {
-    enum Shape {
-        case round
-        case square
-    }
-    enum Size {
-        case humongo
-        case miniature
-    }
-    
-    var shape: Shape
-    var size: Size
+    var size: WeirdSize
 }
 
 struct Tea {
-    enum Variety {
-        case oolong
-        case puerh
-    }
-    enum Size {
-        case teacup
-        case teapot
-    }
-    
-    var variety: Variety
-    var size: Size
+    var size: NormalSize
 }
 
-var eats: [Biscuit] = [.init(shape: .round, size: .humongo)]
-var drinks: [Tea] = [.init(variety: .oolong, size: .teacup)]
+var eats: [Biscuit] = [Biscuit(size: .humongo)]
+var drinks: [Tea] = [Tea(size: .teapot)]
+
+// what if I want to combine eats and drinks array into one and what the type would it be?
+var snacks: [Any] = eats + drinks
 ```
 
+
 Here is a problem, how do we combine eats and drinks into one array since they don't share anything in common?
-Yes the `var size: Size` share the same name between Biscuit and Tea but their underlying type is different.
-We can introduce a protocol `Snackable` with associated type `Size` and use the new swift feature existential any to combine them.
+Yes the `var size` share the same name between Biscuit and Tea but their underlying type is different.
+We can introduce a protocol `Snackable` with associated type `Size` and use the new swift feature existential any to combine them.  
 
 
 ```swift
 protocol Snackable {
     associatedtype Size
-    func calories(size: Size) -> Int
+    var size: Size { get }
 }
 
-extension Biscuit: Snackable {
-    func calories(size: Size) -> Int {
-        return size == .humongo ? 100 : 10
-    }
-}
-extension Tea: Snackable {
-    func calories(size: Size) -> Int {
-        return size == .teacup ? 1 : 10
-    }
-}
+extension Biscuit: Snackable {}
+extension Tea: Snackable {}
 
-let existantialSnacks: [any Snackable] = eats + drinks
+var snacks: [any Snackable] = eats + drinks
 ```
 
 With existential type, there is a performance hit because it is using dynamic dispatch during the runtime.
@@ -79,27 +67,49 @@ struct AnySnackable {
     }
 }
 
-let anySnacks = [
+var snacks = [
     AnySnackable(Biscuit(shape: .round, size: .humongo)),
     AnySnackable(Tea(variety: .oolong, size: .teacup))
 ]
 ```
 
 With `Snackable` in the example above, it is certainly not ideal because we use the type `Any`.
-If we examine the Biscuit and Tea closer, we can see the associated type `Size` should be erased from the array perspective.
-So let's try to erase the type `Size` only.
+If we examine the Biscuit and Tea closer, we can see the associated type `Size` can be erased from the array perspective.
+So let's try to erase the type `Size` only.  
+
+Here we further refine the `AnySnackable` protocol by adding a generic for the associated type `Size`
 
 ```swift
 
-struct SizelessSnackable {
-    var calories: (Any) -> Int
-    init<T: Snackable>(_ snack: T) {
-        self.calories = { size in
-            guard let size = size as? T.Size else {
-                fatalError("Oops")
-            }
-            return snack.calories(size: size)
+struct AnySnack<S>: Snackable {
+    var erasure: () -> S
+    init<T: Snackable>(_ concrete: T) where T.Size == S {
+        /// By wrapping the size property in a closure, we capture the concrete type T's Size type info and effectively erased all other type info of concrete T.
+        /// For example, the oreo and cheetos are treated as same type now and all other type info of oreo and cheetos are gone.
+        ///     var oreo: AnySnack<WeirdSize> = .init(Biscuit(size: .humongo))
+        ///     var cheetos: AnySnack<WeirdSize> = .init(Biscuit(size: .miniature))
+        self.erasure = {
+            return concrete.size
         }
     }
+    
+    var size: S {
+        self.erasure()
+    }
 }
+
+let cookies: [AnySnack<WeirdSize>] = [
+    AnySnack(Biscuit(size: .humongo)),
+    AnySnack(Biscuit(size: .miniature)),
+]
+
+let teas: [AnySnack<NormalSize>] = [
+    AnySnack(Tea(size: .teacup)),
+    AnySnack(Tea(size: .teapot)),
+]
+
+// this will give you an error because WeirdSize and NormalSize doesn't match
+// var snacks = cookies + teas 
 ```
+
+## How do we achieve this goal?
