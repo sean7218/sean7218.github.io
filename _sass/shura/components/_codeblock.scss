@@ -50,7 +50,7 @@ $highlights: (
 // 
 div.highlight {
   background-color: $crust;
-  padding: $base-padding $base-padding * 2;
+  padding: $base-padding $base-padding*2;
   // margin: $base-margin;
   margin: 0;
   border-radius: $base-border-radius;
@@ -60,8 +60,8 @@ div.highlight {
 
 .language-plaintext {
   background-color: $crust;
-  padding: calc($base-padding * 0.2) calc($base-padding * 0.8);
-  border-radius: $base-border-radius * 0.25;
+  padding: $base-padding*0.2 $base-padding*0.8;
+  border-radius: $base-border-radius*0.25;
 }
 
 // https://github.com/jwarby/jekyll-pygments-themes/blob/master/github.css
