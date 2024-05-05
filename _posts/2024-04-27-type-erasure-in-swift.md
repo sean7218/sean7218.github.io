@@ -113,3 +113,31 @@ let teas: [AnySnack<NormalSize>] = [
 ```
 
 ## How do we achieve this goal?
+
+```swift
+struct AnySizeSnack: Snackable {
+    typealias Size = Any
+    var erasure: () -> Size
+    init<T: Snackable>(_ concrete: T) {
+        self.erasure = {
+            return concrete.size
+        }
+    }
+    
+    var size: Size {
+        self.erasure()
+    }
+}
+
+let oreos: [AnySizeSnack] = [
+    .init(Biscuit(size: .humongo)),
+    .init(Biscuit(size: .miniature)),
+]
+
+let greens: [AnySizeSnack] = [
+    .init(Tea(size: .teacup)),
+    .init(Tea(size: .teapot)),
+]
+
+var snacks = oreos + greens
+```
