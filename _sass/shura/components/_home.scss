@@ -32,6 +32,9 @@
   border: 3px solid var(--color-border-default);
   object-fit: cover;
   margin-bottom: $base-margin;
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .profile-avatar-placeholder {
@@ -42,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto $base-margin;
+  margin: 0 0 $base-margin 0;
   background-color: var(--color-bg-subtle);
   color: var(--color-fg-muted);
 }
@@ -52,6 +55,7 @@
   font-weight: 700;
   color: var(--color-fg-default);
   margin: 0 0 $base-margin * 0.5;
+  text-align: left;
 }
 
 .profile-bio {
@@ -59,13 +63,14 @@
   font-size: $font-size-sm;
   line-height: 1.5;
   margin: 0 0 $base-margin * 1.5;
+  text-align: left;
 }
 
 .profile-links {
   display: flex;
   flex-direction: column;
   gap: $base-padding * 0.5;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .profile-link {
@@ -136,5 +141,6 @@
   .profile-avatar-placeholder {
     width: 120px;
     height: 120px;
+    display: none;
   }
 }

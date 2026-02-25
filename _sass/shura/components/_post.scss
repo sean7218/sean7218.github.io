@@ -130,7 +130,7 @@
 // ─── Page-level styles ─────────────────────────────────────────────────────
 
 .page-content {
-  padding: $base-padding * 3 0;
+  padding: $base-padding * 3 $base-padding * 1;
 }
 
 .page-title {
