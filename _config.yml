@@ -7,6 +7,8 @@ baseurl: ""
 url: "https://sean7218.github.io"
 twitter_username: sean7218
 github_username: sean7218
+og_image: /assets/images/og-default.png
+locale: en_US
 
 # Author (used by the homepage sidebar)
 author:
