@@ -1,0 +1,110 @@
+.post-header {
+  margin-bottom: $base-margin * 2;
+  border-bottom: $base-border-thickness solid $surface-1;
+  padding-bottom: $base-padding;
+}
+
+.post-title {
+  color: $text;
+  margin: 0 0 $base-margin * 0.5;
+}
+
+.post-meta {
+  color: $subtext-0;
+  font-size: $font-size-sm;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: $base-margin;
+}
+
+.post-description {
+  color: $subtext-1;
+  font-size: $font-size-lg * 0.85;
+  line-height: 1.5;
+  margin: $base-margin 0;
+  font-style: italic;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: $base-margin * 0.75;
+}
+
+.post-tag {
+  background-color: $surface-0;
+  color: $mauve;
+  font-size: $font-size-sm * 0.85;
+  padding: 0.15rem 0.6rem;
+  border-radius: $base-border-radius * 0.3;
+  text-decoration: none;
+  border: $base-border-thickness solid $surface-1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &::before {
+    content: '#';
+    opacity: 0.6;
+    margin-right: 0.1rem;
+  }
+
+  &:hover {
+    background-color: $surface-1;
+    color: $lavender;
+  }
+}
+
+.post-body {
+  line-height: 1.75;
+
+  h2 {
+    color: $subtext-1;
+    margin-top: $base-margin * 2.5;
+    margin-bottom: $base-margin;
+  }
+
+  h3 {
+    color: $subtext-0;
+    margin-top: $base-margin * 2;
+    margin-bottom: $base-margin * 0.75;
+  }
+
+  p {
+    color: $text;
+    margin-bottom: $base-margin;
+  }
+
+  a {
+    color: $sapphire;
+    text-decoration: underline;
+    text-decoration-color: rgba($sapphire, 0.4);
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $blue;
+      text-decoration-color: $blue;
+    }
+  }
+
+  ul, ol {
+    color: $text;
+    padding-left: 1.5rem;
+    margin-bottom: $base-margin;
+
+    li {
+      margin-bottom: $base-margin * 0.4;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid $surface-2;
+    margin: $base-margin * 1.5 0;
+    padding: $base-padding * 0.5 $base-padding * 1.5;
+    color: $subtext-0;
+    font-style: italic;
+    background-color: $mantle;
+    border-radius: 0 $base-border-radius * 0.25 $base-border-radius * 0.25 0;
+  }
+}

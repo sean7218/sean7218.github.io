@@ -25,10 +25,17 @@ twitter_username: sean7218
 github_username:  sean7218
 
 # Build settings
+highlighter: rouge
 markdown: kramdown
-# theme: minima
-# plugins:
-#   - jekyll-feed
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    block:
+      line_numbers: false
+
+plugins:
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

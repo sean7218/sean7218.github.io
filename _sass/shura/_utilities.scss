@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:map';
 
 $utilities: (
   "padding": (
@@ -159,8 +160,8 @@ $utilities: (
 );
 
 @each $property, $map in $utilities {
-  $prefix: map-get($map, "prefix");
-  $values: map-get($map, "values");
+  $prefix: map.get($map, "prefix");
+  $values: map.get($map, "values");
 
   @each $k, $v in $values {
     @if($k =="default") {

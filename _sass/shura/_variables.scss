@@ -71,9 +71,6 @@ $colors: (
   "info": $info,
 );
 
-@debug map-get($colors, "primary");
-@debug map-get($colors, "base");
-
 // spacing
 $base-padding: 0.75rem;
 $base-margin: 0.75rem;

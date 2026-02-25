@@ -1,8 +1,16 @@
 ---
 layout: post
-title:  "Type Erasure in Swift"
+title: "Type Erasure in Swift"
+date: 2024-04-27
 author: Sean Zhang
-date:   2024-04-27
+description: "A practical walkthrough of type erasure patterns in Swift — from existential types to generic wrapper structs."
+tags:
+  - swift
+  - ios
+  - generics
+aliases:
+  - "Swift Type Erasure"
+  - "AnySnackable Pattern"
 ---
 
 Why do we need erasing type infomation? Let's dive deeper into some examples and use cases.
