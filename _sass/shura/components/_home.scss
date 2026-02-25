@@ -113,6 +113,30 @@
   }
 }
 
+.home-about {
+  margin-bottom: $base-margin * 3;
+  padding-bottom: $base-padding * 2;
+  border-bottom: $base-border-thickness solid var(--color-border-muted);
+
+  h2 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: var(--color-fg-default);
+    margin: 0 0 $base-margin;
+  }
+
+  p {
+    color: var(--color-fg-muted);
+    font-size: $font-size-base;
+    line-height: 1.7;
+    margin: 0 0 $base-margin;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .home-posts {
   h2 {
     font-size: $font-size-xl;
