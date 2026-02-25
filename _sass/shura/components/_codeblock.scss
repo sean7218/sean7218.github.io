@@ -1,20 +1,21 @@
 // Code block container
 div.highlight {
-  background-color: $crust;
+  background-color: var(--hl-code-bg);
   padding: $base-padding $base-padding * 2;
   margin: 0;
   border-radius: $base-border-radius;
+  border: $base-border-thickness solid var(--color-border-default);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-// Inline code
+// Inline code (handled by .prose code; this is a fallback for outside .prose)
 .language-plaintext {
-  background-color: $surface-0;
-  color: $green;
-  padding: $base-padding * 0.2 $base-padding * 0.5;
-  border-radius: $base-border-radius * 0.25;
-  font-size: $font-size-sm;
+  background-color: var(--hl-inline-bg);
+  color: var(--hl-inline-fg);
+  padding: 0.2em 0.4em;
+  border-radius: $base-border-radius;
+  font-size: 85%;
 }
 
 // Wrapper injected by code-utils.js for the label + copy button overlay
@@ -24,7 +25,6 @@ div.highlight {
   border-radius: $base-border-radius;
   overflow: visible;
 
-  // Hide label/button by default, show on hover
   .code-lang-label,
   .code-copy-btn {
     opacity: 0;
@@ -41,14 +41,14 @@ div.highlight {
 
 .code-lang-label {
   position: absolute;
-  top: -0.75rem;
+  top: -0.6rem;
   left: 0.75rem;
-  background-color: $surface-1;
-  color: $subtext-1;
-  font-size: $font-size-sm * 0.85;
+  background-color: var(--color-bg-emphasis);
+  color: var(--color-fg-on-emphasis);
+  font-size: 0.7rem;
   font-family: monospace;
   padding: 0.1rem 0.5rem;
-  border-radius: $base-border-radius * 0.3;
+  border-radius: $base-border-radius;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   pointer-events: none;
@@ -59,176 +59,179 @@ div.highlight {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background-color: $surface-1;
-  color: $subtext-1;
-  border: none;
-  border-radius: $base-border-radius * 0.3;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-fg-muted);
+  border: $base-border-thickness solid var(--color-border-default);
+  border-radius: $base-border-radius;
   padding: 0.25rem 0.5rem;
-  font-size: $font-size-sm * 0.85;
+  font-size: 0.7rem;
   cursor: pointer;
   z-index: 1;
   transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
 
   &:hover {
-    background-color: $surface-2;
-    color: $text;
+    background-color: var(--color-neutral-subtle);
+    color: var(--color-fg-default);
   }
 
   &.copied {
-    color: $green;
-    background-color: $surface-2;
+    color: var(--color-success-fg);
+    background-color: var(--color-success-subtle);
+    border-color: var(--color-success-fg);
   }
 }
 
-// ─── Catppuccin Mocha — Rouge token mapping ────────────────────────────────
+// ─── Rouge token mapping using CSS custom properties ────────────────────────
+// Override any --hl-* variable in your own stylesheet to customise colours.
 
 // Keywords
 .highlight .k,
-.highlight .kd,   // Keyword.Declaration (var, let, func, class, struct, etc.)
-.highlight .kn,   // Keyword.Namespace  (import)
-.highlight .kp,   // Keyword.Pseudo     (self, super)
-.highlight .kr,   // Keyword.Reserved
-.highlight .kc    // Keyword.Constant   (true, false, nil)
-  { color: $mauve; font-weight: normal; }
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kc
+  { color: var(--hl-keyword); font-weight: normal; }
 
-.highlight .kt    // Keyword.Type
-  { color: $yellow; font-style: italic; }
+.highlight .kt
+  { color: var(--hl-type); font-style: italic; }
 
-// Identifiers – functions
-.highlight .nf,   // Name.Function
-.highlight .fm    // Name.Function.Magic
-  { color: $blue; }
+// Functions
+.highlight .nf,
+.highlight .fm
+  { color: var(--hl-function); }
 
-// Identifiers – types / classes
-.highlight .nc    // Name.Class
-  { color: $yellow; }
+// Types / classes
+.highlight .nc
+  { color: var(--hl-type); }
 
-.highlight .nn    // Name.Namespace
-  { color: $lavender; }
+.highlight .nn
+  { color: var(--hl-function); }
 
-// Identifiers – constants / properties
-.highlight .no    // Name.Constant
-  { color: $peach; }
+// Constants / properties
+.highlight .no
+  { color: var(--hl-constant); }
 
-.highlight .ni    // Name.Entity
-  { color: $flamingo; }
+.highlight .ni
+  { color: var(--hl-constant); }
 
-.highlight .nd    // Name.Decorator  (@attribute in Swift)
-  { color: $peach; font-style: italic; }
+// Decorators / attributes
+.highlight .nd
+  { color: var(--hl-decorator); font-style: italic; }
 
-// Identifiers – variables
-.highlight .nv,   // Name.Variable
-.highlight .vc,   // Name.Variable.Class
-.highlight .vg,   // Name.Variable.Global
-.highlight .vi    // Name.Variable.Instance
-  { color: $text; }
+// Variables
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi
+  { color: var(--hl-variable); }
 
-// Identifiers – builtins
-.highlight .nb    // Name.Builtin
-  { color: $red; }
+// Builtins
+.highlight .nb
+  { color: var(--hl-builtin); }
 
-.highlight .bp    // Name.Builtin.Pseudo (self as pseudo in some lexers)
-  { color: $mauve; }
+.highlight .bp
+  { color: var(--hl-keyword); }
 
-// Identifiers – generic / other names
-.highlight .n     // Name (generic)
-  { color: $text; }
+// Generic names
+.highlight .n
+  { color: var(--hl-variable); }
 
-.highlight .na    // Name.Attribute
-  { color: $blue; }
+.highlight .na
+  { color: var(--hl-attribute); }
 
-.highlight .nt    // Name.Tag
-  { color: $mauve; }
+.highlight .nt
+  { color: var(--hl-tag); }
 
-.highlight .nl    // Name.Label
-  { color: $blue; }
+.highlight .nl
+  { color: var(--hl-function); }
 
-.highlight .nx    // Name.Other
-  { color: $text; }
+.highlight .nx
+  { color: var(--hl-variable); }
 
-// Literals – strings
+// Strings
 .highlight .s,
-.highlight .s1,   // Literal.String.Single
-.highlight .s2,   // Literal.String.Double
-.highlight .sb,   // Literal.String.Backtick
-.highlight .sc,   // Literal.String.Char
-.highlight .sd,   // Literal.String.Doc
-.highlight .sh,   // Literal.String.Heredoc
-.highlight .sx,   // Literal.String.Other
-.highlight .sr,   // Literal.String.Regex
-.highlight .ss    // Literal.String.Symbol
-  { color: $green; }
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .sh,
+.highlight .sx,
+.highlight .sr,
+.highlight .ss
+  { color: var(--hl-string); }
 
-.highlight .si,   // Literal.String.Interpol (string interpolation \())
-.highlight .se    // Literal.String.Escape   (\n, \t, etc.)
-  { color: $peach; }
+.highlight .si,
+.highlight .se
+  { color: var(--hl-escape); }
 
-// Literals – numbers
+// Numbers
 .highlight .m,
-.highlight .mi,   // Literal.Number.Integer
-.highlight .mf,   // Literal.Number.Float
-.highlight .mh,   // Literal.Number.Hex
-.highlight .mo,   // Literal.Number.Oct
-.highlight .mb,   // Literal.Number.Bin
-.highlight .il    // Literal.Number.Integer.Long
-  { color: $peach; }
+.highlight .mi,
+.highlight .mf,
+.highlight .mh,
+.highlight .mo,
+.highlight .mb,
+.highlight .il
+  { color: var(--hl-number); }
 
 // Operators
 .highlight .o,
-.highlight .ow    // Operator.Word (as, is, in, where)
-  { color: $sky; }
+.highlight .ow
+  { color: var(--hl-operator); }
 
 // Punctuation
-.highlight .p     // Punctuation (braces, colons, semicolons)
-  { color: $subtext-1; }
+.highlight .p
+  { color: var(--hl-punctuation); }
 
 // Comments
 .highlight .c,
-.highlight .c1,   // Comment.Single
-.highlight .cm,   // Comment.Multiline
-.highlight .cp,   // Comment.Preproc
-.highlight .cs,   // Comment.Special
-.highlight .ch    // Comment.Hashbang
-  { color: $overlay-2; font-style: italic; }
+.highlight .c1,
+.highlight .cm,
+.highlight .cp,
+.highlight .cs,
+.highlight .ch
+  { color: var(--hl-comment); font-style: italic; }
 
-.highlight .cd    // Comment.Doc (/// doc comments in Swift)
-  { color: $overlay-2; font-style: italic; }
+.highlight .cd
+  { color: var(--hl-comment); font-style: italic; }
 
 // Generic diff markers
-.highlight .gd    // Generic.Deleted
-  { color: $red; background-color: rgba($red, 0.1); }
+.highlight .gd
+  { color: var(--hl-diff-deleted); background-color: var(--hl-diff-deleted-bg); }
 
-.highlight .gi    // Generic.Inserted
-  { color: $green; background-color: rgba($green, 0.1); }
+.highlight .gi
+  { color: var(--hl-diff-added); background-color: var(--hl-diff-added-bg); }
 
-.highlight .ge    // Generic.Emph
+.highlight .ge
   { font-style: italic; }
 
-.highlight .gs    // Generic.Strong
+.highlight .gs
   { font-weight: bold; }
 
-.highlight .gu    // Generic.Subheading
-  { color: $subtext-0; }
+.highlight .gu
+  { color: var(--hl-comment); }
 
-.highlight .gh    // Generic.Heading
-  { color: $blue; font-weight: bold; }
+.highlight .gh
+  { color: var(--hl-function); font-weight: bold; }
 
-.highlight .go    // Generic.Output
-  { color: $subtext-0; }
+.highlight .go
+  { color: var(--hl-comment); }
 
-.highlight .gp    // Generic.Prompt
-  { color: $overlay-2; }
+.highlight .gp
+  { color: var(--hl-comment); }
 
-.highlight .gr    // Generic.Error
-  { color: $red; }
+.highlight .gr
+  { color: var(--hl-diff-deleted); }
 
-.highlight .gt    // Generic.Traceback
-  { color: $red; }
+.highlight .gt
+  { color: var(--hl-diff-deleted); }
 
 // Error token
 .highlight .err
-  { color: $red; }
+  { color: var(--hl-diff-deleted); }
 
 // Whitespace
 .highlight .w
-  { color: $text; }
+  { color: var(--hl-variable); }

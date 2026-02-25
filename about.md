@@ -1,8 +1,15 @@
 ---
-layout: default 
-title: About
+layout: default
+title: About Me
+permalink: /about
 ---
 
-<p>
-My name is Sean Zhang and I specialize in React, Serverless, and iOS. I am currently working at Capital One as iOS Engineer. 
-</p>
+<div class="container page-content">
+<div class="prose" markdown="1">
+
+# About Me
+
+My name is Sean Zhang and I specialize in React, Serverless, and iOS. I am currently working at Capital One as an iOS Engineer.
+
+</div>
+</div>

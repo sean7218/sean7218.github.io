@@ -1,5 +1,16 @@
-
 footer {
-  @extend .flex-layout;
-  padding: $base-padding $base-padding * 2;
+  border-top: $base-border-thickness solid var(--color-border-default);
+  padding: $base-padding * 2;
+  text-align: center;
+  color: var(--color-fg-muted);
+  font-size: $font-size-sm;
+
+  a {
+    color: var(--color-accent-fg);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

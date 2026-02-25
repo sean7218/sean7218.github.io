@@ -1,75 +1,157 @@
 @use 'sass:math';
 
-// catppuccin
-$rosewater: #f5e0dc !default;
-$flamingo: #f2cdcd !default;
-$pink: #f5c2e7 !default;
-$mauve: #cba6f7 !default;
-$red: #f38ba8 !default;
-$maroon: #eba0ac !default;
-$peach: #fab387 !default;
-$yellow: #f9e2af !default;
-$green: #a6e3a1 !default;
-$teal: #94e2d5 !default;
-$sky: #89dceb !default;
-$sapphire: #74c7ec !default;
-$blue: #89b4fa !default;
-$lavender: #b4befe !default;
-$text: #cdd6f4 !default;
-$subtext-0: #a6adc8 !default;
-$subtext-1: #bac2de !default;
-$overlay-0: #6c7086 !default;
-$overlay-1: #7f849c !default;
-$overlay-2: #9399b2 !default;
-$surface-0: #313244 !default;
-$surface-1: #45475a !default;
-$surface-2: #585b70 !default;
-$base: #1e1e2e !default;
-$mantle: #181825 !default;
-$crust: #11111b !default;
+// ─── GitHub Primer Light / Dark color tokens ────────────────────────────────
+// Applied via [data-theme="light"] and [data-theme="dark"] on <html>.
+// Components reference var(--color-*) so the palette swaps automatically.
 
-$catppuccin: (
-  "rosewater": $rosewater,
-  "flamingo": $flamingo,
-  "pink": $pink,
-  "mauve": $mauve,
-  "red": $red,
-  "maroon": $maroon,
-  "peach": $peach,
-  "yellow": $yellow,
-  "green": $green,
-  "teal": $teal,
-  "sky": $sky,
-  "sapphire": $sapphire,
-  "blue": $blue,
-  "lavender": $lavender,
-  "text": $text,
-  "subtext-0": $subtext-0,
-  "subtext-1": $subtext-1,
-  "overlay-0": $overlay-0,
-  "overlay-1": $overlay-1,
-  "overlay-2": $overlay-2,
-  "surface-0": $surface-0,
-  "surface-1": $surface-1,
-  "surface-2": $surface-2,
-  "base": $base,
-  "mantle": $mantle,
-  "crust": $crust,
-);
+:root,
+[data-theme="light"] {
+  // Backgrounds
+  --color-bg-default: #ffffff;
+  --color-bg-subtle: #f6f8fa;
+  --color-bg-inset: #eff2f5;
+  --color-bg-emphasis: #24292f;
+  --color-bg-overlay: rgba(27, 31, 36, 0.5);
 
-// theme colors
-$primary: #326dee !default;
-$secondary: #1ac888 !default;
-$error: $red !default;
-$info: #f6c31c !default;
+  // Foregrounds
+  --color-fg-default: #1f2328;
+  --color-fg-muted: #656d76;
+  --color-fg-subtle: #6e7781;
+  --color-fg-on-emphasis: #ffffff;
 
-// color palette
-$colors: (
-  "primary": $primary,
-  "secondary": $secondary,
-  "error": $error,
-  "info": $info,
-);
+  // Borders
+  --color-border-default: #d1d9e0;
+  --color-border-muted: #d8dee4;
+  --color-border-subtle: rgba(27, 31, 36, 0.15);
+
+  // Accent (blue)
+  --color-accent-fg: #0969da;
+  --color-accent-emphasis: #0969da;
+  --color-accent-subtle: #ddf4ff;
+
+  // Success (green)
+  --color-success-fg: #1a7f37;
+  --color-success-emphasis: #1f883d;
+  --color-success-subtle: #dafbe1;
+
+  // Danger (red)
+  --color-danger-fg: #d1242f;
+  --color-danger-emphasis: #cf222e;
+  --color-danger-subtle: #ffebe9;
+
+  // Warning (yellow)
+  --color-warning-fg: #9a6700;
+  --color-warning-emphasis: #9a6700;
+  --color-warning-subtle: #fff8c5;
+
+  // Done (purple)
+  --color-done-fg: #8250df;
+  --color-done-emphasis: #8250df;
+  --color-done-subtle: #fbefff;
+
+  // Neutral
+  --color-neutral-emphasis: #6e7781;
+  --color-neutral-subtle: #eaeef2;
+
+  // Syntax highlighting (GitHub light)
+  --hl-keyword: #cf222e;
+  --hl-type: #953800;
+  --hl-function: #8250df;
+  --hl-string: #0a3069;
+  --hl-number: #0550ae;
+  --hl-comment: #6e7781;
+  --hl-operator: #0550ae;
+  --hl-variable: #24292f;
+  --hl-constant: #0550ae;
+  --hl-builtin: #cf222e;
+  --hl-decorator: #953800;
+  --hl-tag: #116329;
+  --hl-attribute: #0550ae;
+  --hl-escape: #0550ae;
+  --hl-punctuation: #24292f;
+  --hl-diff-added: #1a7f37;
+  --hl-diff-added-bg: rgba(46, 160, 67, 0.15);
+  --hl-diff-deleted: #cf222e;
+  --hl-diff-deleted-bg: rgba(255, 129, 130, 0.15);
+  --hl-code-bg: #f6f8fa;
+  --hl-inline-bg: rgba(175, 184, 193, 0.2);
+  --hl-inline-fg: #1f2328;
+}
+
+[data-theme="dark"] {
+  // Backgrounds
+  --color-bg-default: #0d1117;
+  --color-bg-subtle: #161b22;
+  --color-bg-inset: #010409;
+  --color-bg-emphasis: #6e7681;
+  --color-bg-overlay: rgba(1, 4, 9, 0.8);
+
+  // Foregrounds
+  --color-fg-default: #e6edf3;
+  --color-fg-muted: #8b949e;
+  --color-fg-subtle: #6e7681;
+  --color-fg-on-emphasis: #ffffff;
+
+  // Borders
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-border-subtle: rgba(240, 246, 252, 0.1);
+
+  // Accent (blue)
+  --color-accent-fg: #2f81f7;
+  --color-accent-emphasis: #1f6feb;
+  --color-accent-subtle: rgba(56, 139, 253, 0.15);
+
+  // Success (green)
+  --color-success-fg: #3fb950;
+  --color-success-emphasis: #238636;
+  --color-success-subtle: rgba(46, 160, 67, 0.15);
+
+  // Danger (red)
+  --color-danger-fg: #f85149;
+  --color-danger-emphasis: #da3633;
+  --color-danger-subtle: rgba(248, 81, 73, 0.15);
+
+  // Warning (yellow)
+  --color-warning-fg: #d29922;
+  --color-warning-emphasis: #9e6a03;
+  --color-warning-subtle: rgba(187, 128, 9, 0.15);
+
+  // Done (purple)
+  --color-done-fg: #a371f7;
+  --color-done-emphasis: #8957e5;
+  --color-done-subtle: rgba(163, 113, 247, 0.15);
+
+  // Neutral
+  --color-neutral-emphasis: #6e7681;
+  --color-neutral-subtle: rgba(110, 118, 129, 0.1);
+
+  // Syntax highlighting (GitHub dark)
+  --hl-keyword: #ff7b72;
+  --hl-type: #ffa657;
+  --hl-function: #d2a8ff;
+  --hl-string: #a5d6ff;
+  --hl-number: #79c0ff;
+  --hl-comment: #8b949e;
+  --hl-operator: #79c0ff;
+  --hl-variable: #e6edf3;
+  --hl-constant: #79c0ff;
+  --hl-builtin: #ff7b72;
+  --hl-decorator: #ffa657;
+  --hl-tag: #7ee787;
+  --hl-attribute: #79c0ff;
+  --hl-escape: #79c0ff;
+  --hl-punctuation: #e6edf3;
+  --hl-diff-added: #3fb950;
+  --hl-diff-added-bg: rgba(46, 160, 67, 0.15);
+  --hl-diff-deleted: #f85149;
+  --hl-diff-deleted-bg: rgba(248, 81, 73, 0.15);
+  --hl-code-bg: #161b22;
+  --hl-inline-bg: rgba(110, 118, 129, 0.4);
+  --hl-inline-fg: #e6edf3;
+}
+
+// ─── Layout tokens (unchanged) ──────────────────────────────────────────────
 
 // spacing
 $base-padding: 0.75rem;
@@ -77,14 +159,20 @@ $base-margin: 0.75rem;
 
 // borders
 $base-border-thickness: 1px;
-$base-border-radius: 20px;
+$base-border-radius: 6px;
 
 // box-shadow
-$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+$base-box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 
 // font-size
 $base-font-size: 1rem;
-$font-size-sm: $base-font-size * 0.75;
-$font-size-lg: $base-font-size * 1.5;
-$font-size-xl: $base-font-size * 2;
-$font-size-xxl: $base-font-size * 3;
+$font-size-sm: $base-font-size * 0.875;
+$font-size-lg: $base-font-size * 1.25;
+$font-size-xl: $base-font-size * 1.5;
+$font-size-xxl: $base-font-size * 2;
+
+// breakpoints
+$bp-sm: 544px;
+$bp-md: 768px;
+$bp-lg: 1012px;
+$bp-xl: 1280px;

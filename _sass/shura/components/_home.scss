@@ -1,0 +1,140 @@
+// ─── 2-column academic homepage layout ─────────────────────────────────────
+
+.home {
+  padding: $base-padding * 3 0;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: $base-padding * 4;
+  max-width: $bp-xl;
+  margin: 0 auto;
+  padding: 0 $base-padding * 2;
+}
+
+// ─── Sidebar (profile) ────────────────────────────────────────────────────
+
+.home-sidebar {
+  position: sticky;
+  top: calc(50px + #{$base-padding * 3});
+  align-self: start;
+}
+
+.profile {
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3px solid var(--color-border-default);
+  object-fit: cover;
+  margin-bottom: $base-margin;
+}
+
+.profile-avatar-placeholder {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3px solid var(--color-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $base-margin;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-fg-muted);
+}
+
+.profile-name {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: var(--color-fg-default);
+  margin: 0 0 $base-margin * 0.5;
+}
+
+.profile-bio {
+  color: var(--color-fg-muted);
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  margin: 0 0 $base-margin * 1.5;
+}
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+  gap: $base-padding * 0.5;
+  align-items: center;
+}
+
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-fg-muted);
+  text-decoration: none;
+  font-size: $font-size-sm;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--color-accent-fg);
+  }
+}
+
+// ─── Main content ──────────────────────────────────────────────────────────
+
+.home-main {
+  min-width: 0;
+}
+
+.home-intro {
+  margin-bottom: $base-margin * 3;
+  padding-bottom: $base-padding * 2;
+  border-bottom: $base-border-thickness solid var(--color-border-muted);
+
+  h1 {
+    font-size: $font-size-xxl;
+    font-weight: 700;
+    color: var(--color-fg-default);
+    margin: 0 0 $base-margin;
+  }
+
+  p {
+    color: var(--color-fg-muted);
+    font-size: $font-size-lg;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.home-posts {
+  h2 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: var(--color-fg-default);
+    margin: 0 0 $base-margin;
+    padding-bottom: $base-padding * 0.5;
+    border-bottom: $base-border-thickness solid var(--color-border-muted);
+  }
+}
+
+// ─── Mobile: stack vertically ──────────────────────────────────────────────
+
+@media (max-width: $bp-md) {
+  .home-grid {
+    grid-template-columns: 1fr;
+    gap: $base-padding * 2;
+    padding: 0 $base-padding;
+  }
+
+  .home-sidebar {
+    position: static;
+  }
+
+  .profile-avatar,
+  .profile-avatar-placeholder {
+    width: 120px;
+    height: 120px;
+  }
+}

@@ -1,21 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
+  var burger = document.getElementById('navburger');
+  var menu = document.getElementById('navmenu');
+  if (!burger || !menu) return;
 
-  // Get all "navbar-burger" elements
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-  // Add a click event on each of them
-  $navbarBurgers.forEach( el => {
-    el.addEventListener('click', () => {
-
-      // Get the target from the "data-target" attribute
-      const target = el.dataset.target;
-      const $target = document.getElementById(target);
-
-      // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-      el.classList.toggle('is-active');
-      $target.classList.toggle('is-active');
-
-    });
+  burger.addEventListener('click', function () {
+    var expanded = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!expanded));
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
   });
 
+  // Close menu when a nav link is clicked (mobile UX)
+  var links = menu.querySelectorAll('.navbar-link');
+  links.forEach(function (link) {
+    link.addEventListener('click', function () {
+      burger.classList.remove('is-active');
+      menu.classList.remove('is-active');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
 });

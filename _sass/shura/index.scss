@@ -1,4 +1,4 @@
-// variables and functions
+// variables (includes CSS custom properties for light/dark)
 @import 'functions';
 @import 'variables';
 
@@ -7,20 +7,15 @@
 @import 'breakpoints';
 @import 'grid';
 
-// colors
-@import 'colors';
-
-// // components (button, card, navbar)
+// components
 @import 'components/card';
 @import 'components/button';
 @import 'components/navbar';
 @import 'components/footer';
 @import 'components/codeblock';
 @import 'components/post';
+@import 'components/prose';
+@import 'components/home';
 
-// utility (margin, padding, opacity)
+// utilities
 @import 'utilities';
-
-
-
-

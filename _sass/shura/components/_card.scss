@@ -1,4 +1,7 @@
-
 .card {
-  background-color: $secondary;
+  background-color: var(--color-bg-default);
+  border: $base-border-thickness solid var(--color-border-default);
+  border-radius: $base-border-radius;
+  padding: $base-padding * 2;
+  box-shadow: $base-box-shadow;
 }

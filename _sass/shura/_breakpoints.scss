@@ -1,39 +1,23 @@
-@use 'sass:map';
-
-$breakpoints: (
-  "xs": 0,
-  "sm": 480px,
-  "md": 720px,
-  "lg": 960px,
-  "xl": 1200px,
-);
-
-@mixin xs {
-  @media (min-width: map.get($breakpoints, "xs")) {
-    @content;
-  }
-}
-
 @mixin sm {
-  @media (min-width: map.get($breakpoints, "sm")) {
+  @media (min-width: $bp-sm) {
     @content;
   }
 }
 
 @mixin md {
-  @media (min-width: map.get($breakpoints, "md")) {
+  @media (min-width: $bp-md) {
     @content;
   }
 }
 
 @mixin lg {
-  @media (min-width: map.get($breakpoints, "lg")) {
+  @media (min-width: $bp-lg) {
     @content;
   }
 }
 
 @mixin xl {
-  @media (min-width: map.get($breakpoints, "xl")) {
+  @media (min-width: $bp-xl) {
     @content;
   }
 }
@@ -41,26 +25,5 @@ $breakpoints: (
 @mixin breakpoint($bp: 0) {
   @media (min-width: $bp) {
     @content;
-  }
-}
-
-.reponsive-test {
-  @include xs {
-    color: red;
-  }
-  @include sm {
-    color: blue;
-  }
-  @include md {
-    color: green;
-  }
-  @include lg {
-    color: purple;
-  }
-  @include xl {
-    color: orange;
-  }
-  @include breakpoint(1400px) {
-    color: pink;
   }
 }

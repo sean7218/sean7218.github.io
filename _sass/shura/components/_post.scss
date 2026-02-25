@@ -1,16 +1,18 @@
 .post-header {
   margin-bottom: $base-margin * 2;
-  border-bottom: $base-border-thickness solid $surface-1;
+  border-bottom: $base-border-thickness solid var(--color-border-muted);
   padding-bottom: $base-padding;
 }
 
 .post-title {
-  color: $text;
+  color: var(--color-fg-default);
   margin: 0 0 $base-margin * 0.5;
+  border: none;
+  padding: 0;
 }
 
 .post-meta {
-  color: $subtext-0;
+  color: var(--color-fg-muted);
   font-size: $font-size-sm;
   display: flex;
   flex-wrap: wrap;
@@ -20,8 +22,8 @@
 }
 
 .post-description {
-  color: $subtext-1;
-  font-size: $font-size-lg * 0.85;
+  color: var(--color-fg-subtle);
+  font-size: $base-font-size;
   line-height: 1.5;
   margin: $base-margin 0;
   font-style: italic;
@@ -35,13 +37,13 @@
 }
 
 .post-tag {
-  background-color: $surface-0;
-  color: $mauve;
-  font-size: $font-size-sm * 0.85;
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent-fg);
+  font-size: $font-size-sm;
   padding: 0.15rem 0.6rem;
-  border-radius: $base-border-radius * 0.3;
+  border-radius: 2em;
   text-decoration: none;
-  border: $base-border-thickness solid $surface-1;
+  border: $base-border-thickness solid transparent;
   transition: background-color 0.15s ease, color 0.15s ease;
 
   &::before {
@@ -51,60 +53,109 @@
   }
 
   &:hover {
-    background-color: $surface-1;
-    color: $lavender;
+    background-color: var(--color-accent-emphasis);
+    color: var(--color-fg-on-emphasis);
   }
 }
 
 .post-body {
   line-height: 1.75;
+}
 
-  h2 {
-    color: $subtext-1;
-    margin-top: $base-margin * 2.5;
-    margin-bottom: $base-margin;
+// ─── Post list (home + blog page) ──────────────────────────────────────────
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-list-item {
+  display: flex;
+  gap: $base-padding * 2;
+  padding: $base-padding * 1.5 0;
+  border-bottom: $base-border-thickness solid var(--color-border-muted);
+
+  &:last-child {
+    border-bottom: none;
   }
+}
+
+.post-list-meta {
+  flex-shrink: 0;
+  width: 100px;
+  color: var(--color-fg-muted);
+  font-size: $font-size-sm;
+  padding-top: 0.2rem;
+}
+
+.post-list-content {
+  flex: 1;
+  min-width: 0;
 
   h3 {
-    color: $subtext-0;
-    margin-top: $base-margin * 2;
-    margin-bottom: $base-margin * 0.75;
+    margin: 0 0 $base-margin * 0.5;
+    font-size: $font-size-lg;
+    font-weight: 600;
+
+    a {
+      color: var(--color-fg-default);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-accent-fg);
+      }
+    }
   }
 
   p {
-    color: $text;
-    margin-bottom: $base-margin;
+    color: var(--color-fg-muted);
+    font-size: $font-size-sm;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .post-list-item {
+    flex-direction: column;
+    gap: $base-padding * 0.5;
   }
 
-  a {
-    color: $sapphire;
+  .post-list-meta {
+    width: auto;
+  }
+}
+
+// ─── Page-level styles ─────────────────────────────────────────────────────
+
+.page-content {
+  padding: $base-padding * 3 0;
+}
+
+.page-title {
+  font-size: $font-size-xxl;
+  font-weight: 700;
+  color: var(--color-fg-default);
+  margin: 0 0 $base-margin * 2;
+  padding-bottom: $base-padding;
+  border-bottom: $base-border-thickness solid var(--color-border-default);
+}
+
+.view-all {
+  display: inline-block;
+  margin-top: $base-margin * 1.5;
+  color: var(--color-accent-fg);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
     text-decoration: underline;
-    text-decoration-color: rgba($sapphire, 0.4);
-    text-underline-offset: 2px;
-
-    &:hover {
-      color: $blue;
-      text-decoration-color: $blue;
-    }
   }
+}
 
-  ul, ol {
-    color: $text;
-    padding-left: 1.5rem;
-    margin-bottom: $base-margin;
-
-    li {
-      margin-bottom: $base-margin * 0.4;
-    }
-  }
-
-  blockquote {
-    border-left: 3px solid $surface-2;
-    margin: $base-margin * 1.5 0;
-    padding: $base-padding * 0.5 $base-padding * 1.5;
-    color: $subtext-0;
-    font-style: italic;
-    background-color: $mantle;
-    border-radius: 0 $base-border-radius * 0.25 $base-border-radius * 0.25 0;
-  }
+.empty-state {
+  color: var(--color-fg-muted);
+  font-style: italic;
+  padding: $base-padding * 3 0;
 }
