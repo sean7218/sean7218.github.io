@@ -18,7 +18,7 @@ author:
   intro: >-
     I'm an iOS engineer who writes about Swift, React, serverless architecture,
     and software design patterns. Welcome to my corner of the internet.
-  # avatar: /assets/images/avatar.jpg  # uncomment and add your photo
+  avatar: /assets/images/profile-pic.JPG
 
 # Build settings
 highlighter: rouge
